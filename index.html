@@ -1,0 +1,33 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <title>¿Cuánto pagás de ganancias?</title>
+</head>
+<body>
+    <input type="number" id="ganancias" placeholder="50000.000">
+
+    <button onclick="getValue()">Calcular</button>
+
+    <div id="respuesta">
+        
+    </div>
+
+    <script>
+        function getValue() {
+            let inputField = document.getElementById("ganancias");
+            let descuento_max = inputField.value * 0.05;
+            let descuento_formateado = Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',}
+              ).format(descuento_max,  );
+
+
+            var el = document.getElementById('respuesta');
+            el.textContent = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + descuento_formateado + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad." ;
+
+        }
+    </script>
+
+</body>
+</html>
