@@ -5,28 +5,39 @@
     <title>¿Cuánto pagás de ganancias?</title>
 </head>
 <body>
-    <input type="number" id="ganancias" placeholder="50000.000">
+    <input type="number" id="ganancias" placeholder="500.000">
 
-    <button onclick="getValue()">Calcular</button>
+    <button onclick="responder()">Calcular</button>
 
-    <div id="respuesta">
-        
-    </div>
+    <div id="respuesta"></div>
 
     <script>
-        function getValue() {
-            let inputField = document.getElementById("ganancias");
-            let descuento_max = inputField.value * 0.05;
+        
+        function calcular_descuento() {
+            let ganancias = document.getElementById("ganancias");
+            return ganancias.value * 0.05;
+        }
+
+        function mensaje(){
+            let descuento = calcular_descuento();
             let descuento_formateado = Intl.NumberFormat('en-US', {
               style: 'currency',
               currency: 'USD',}
-              ).format(descuento_max,  );
+              ).format(descuento,  );
 
+            let mensaje = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + descuento_formateado + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
 
-            var el = document.getElementById('respuesta');
-            el.textContent = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + descuento_formateado + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad." ;
+            return mensaje;
+        }   
 
+        function responder(){
+            respuesta.textContent = mensaje(descuento) ;
         }
+
+        const descuento =  calcular_descuento();
+        var respuesta = document.getElementById('respuesta');
+
+
     </script>
 
 </body>
