@@ -7,17 +7,36 @@
 <body>
     <div class="form inicial" id="form">
         <input type="number" id="ganancias" placeholder="500.000,00"  class="input"  onfocus="inicial()">
-        <br>
         <button type="submit" onclick="responder()" id="submit" class="submit">Calcular</button>
     </div>
 
-    <div id="respuesta" class="respuesta inicial"> <p></p> </div>
+    <div id="respuesta" class="respuesta inicial"> 
+        <p></p> 
+        <button id="masinfo" onclick="mostrarInfo()">Más info</button>
+    </div>
+    <div id="info" class="info inicial">
+        <p>
+            Buscá la orga a la que querés donar acá:
+            https://servicioscf.afip.gob.ar/Publico/Rg2681/consulta.aspx
+            <br>
+
+            Informate de los detalles en lasa fuentes oficiales:
+            <ul>
+                <li>https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=278</li>
+                <li>https://www.argentina.gob.ar/agricultura/si-queres-ser-donante</li>
+                <li>https://calcularsueldo.com.ar/ganancias/calculadora-de-ganancias</li>
+            </ul>
+
+
+        </p>
+    </div>
     <script>
         var form = document.getElementById('form');
         var ganancias = document.getElementById("ganancias");
         var respuesta = document.getElementById('respuesta');
         var respuesta_texto = respuesta.getElementsByTagName("p")[0]; 
         var submit =  document.getElementById('submit');
+        var info =  document.getElementById('info');
 
         function calcular_descuento() {
             return ganancias.value * 0.05;
@@ -50,6 +69,10 @@
             form.classList.add('inicial');
         }
 
+        function mostrarInfo(){
+            info.classList.remove('inicial');
+        }
+
 
         const descuento =  calcular_descuento();
 
@@ -57,7 +80,6 @@
 
     <style>
     *{
-      margin:0;
       padding:0;
 
       -webkit-box-sizing:border-box;
@@ -79,7 +101,7 @@
   }
 
 /*-------------- saerch section -----------*/
-    .form, .respuesta{
+    .form, .respuesta, .info{
       position:relative;
 
       -webkit-transform:translate(-50%, -50%);
@@ -98,7 +120,7 @@
       top:50%;
     }
 
-    .form *, .respuesta *{
+    .form *, .respuesta *, .info *{
       position:relative;
 
       -webkit-transform:translate(-50%, 0%);
@@ -120,26 +142,29 @@
     }
 
     .form .submit{
-      margin-top: 1em;
+      margin-top: 0.5em;
     }
 
 /*-------------- respuesta -----------*/
 
-    .respuesta.inicial{
+    .respuesta.inicial, .info.inicial{
         display: none;
     }
 
-    .respuesta{      
-      -webkit-transform:translate(-50%, 0%);
-      transform:translate(-50%, 0%);
+    .respuesta, .info{      
+        -webkit-transform:translate(-50%, 0%);
+        transform:translate(-50%, 0%);
 
-      height: auto;
-      margin-top:1em;
+        height: auto;
+        margin-top:1em;
+        margin-bottom: 1em;
     }
 
     .respuesta p{
       width:70%;
     }
+
+
 
     </style>
 
