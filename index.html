@@ -26,6 +26,10 @@
               ).format(descuento,  );
 
             let mensaje = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + descuento_formateado + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
+            
+            if(descuento >= 100000){
+                    mensaje = mensaje + " OJO: No todas las organizaciones pueden recibir donaciones de más de $100.000. Consultá primero sobre esos límites.";
+            }
 
             return mensaje;
         }   
