@@ -18,8 +18,8 @@
     </div>
 
     <div id="respuesta" class="respuesta inicial"> 
-        <div id="descuento" class="descuento"></div>
-        <p></p> 
+        <p id="descuento" class="descuento">$ 0.00</p>
+        <p>Es el monto máximo que podés deducir de tus impuestos a las ganancias. </p><p>Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.</p> 
     </div>
     <div id="info" class="info inicial">
         <h3>Info útil</h3>
@@ -29,14 +29,11 @@
         <p>OJO: No todas las organizaciones pueden recibir donaciones de más de $100.000. Consultá primero sobre esos límites.</p>
     </div>
     <script>
-        var form = document.getElementById('form');
         var ganancias = document.getElementById("ganancias");
-        var respuesta = document.getElementById('respuesta');
-        var respuesta_texto = respuesta.getElementsByTagName("p")[0]; 
         var submit =  document.getElementById('submit');
-        var info =  document.getElementById('info');
         var descuento_numero =  document.getElementById('descuento'); 
 
+        const descuento = 0;
 
         function validar(){
             if (isNaN(ganancias.value) || ganancias.value == "") {
@@ -45,7 +42,6 @@
                 submit.disabled = false; 
             }
         }
-
 
         function formatear(nro){           
             if (isNaN(nro)) { console.log("chequear número a formatear"); return; }else{ nro = Number(nro); }
@@ -58,22 +54,18 @@
             return nro_formateado;
         }
 
-        function mensaje(){
+        function responder(){
             let descuento = ganancias.value * 0.05;
             descuento_numero.textContent =  formatear(descuento);
-            respuesta_texto.textContent = "Es el monto máximo que podés deducir de tus impuestos a las ganancias. \n Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
-
-            return mensaje;
-        }   
-
-        function responder(){
-           mensaje(descuento) ;
+            respuesta.classList.remove('inicial');
         }
-        const descuento = 0;
 
     </script>
 
     <style>
+        .respuesta.inicial{
+            display: none;
+        }
 
     </style>
 
