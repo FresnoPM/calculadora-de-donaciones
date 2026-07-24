@@ -10,10 +10,11 @@
     </div>
 
     <div class="form inicial" id="form">
-        <h2>Ingresá cuánto pagás de ganancias:</h2>
-        <input type="number" id="ganancias" placeholder="500.000,00"  class="input"  onfocus="inicial()">
+        <label for="ganancias">¿Cuánto pagás de ganancias?</label>
+        <span>$
+            <input id="ganancias" placeholder="500000.00"  class="ganancias">
+        </span>
         <button type="submit" onclick="responder()" id="submit" class="submit">Calcular</button>
-        <button id="masinfo" onclick="mostrarInfo()">Más info</button>
     </div>
 
     <div id="respuesta" class="respuesta inicial"> 
@@ -39,6 +40,8 @@
                 </li>
             </ul>
 
+            OJO: No todas las organizaciones pueden recibir donaciones de más de $100.000. Consultá primero sobre esos límites.
+
         </p>
     </div>
     <script>
@@ -49,125 +52,33 @@
         var submit =  document.getElementById('submit');
         var info =  document.getElementById('info');
 
-        function calcular_descuento() {
-            return ganancias.value * 0.05;
+        function formatear(nro){           
+            if (isNaN(nro)) { console.log("chequear número a formatear"); return; }else{ nro = Number(nro); }
+
+            let nro_formateado = Intl.NumberFormat('en-US', {
+              style: 'currency',
+              currency: 'USD',}
+              ).format(nro,  );
+
+            return nro_formateado;
         }
 
         function mensaje(){
-            let descuento = calcular_descuento();
-            let descuento_formateado = Intl.NumberFormat('en-US', {
-              style: 'currency',
-              currency: 'USD',}
-              ).format(descuento,  );
+            let descuento = ganancias.value * 0.05;
 
-            let mensaje = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + descuento_formateado + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
-            
-            if(descuento >= 100000){
-                    mensaje = mensaje + " OJO: No todas las organizaciones pueden recibir donaciones de más de $100.000. Consultá primero sobre esos límites.";
-            }
+            let mensaje = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + formatear(descuento) + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
 
             return mensaje;
         }   
 
         function responder(){
             respuesta_texto.textContent = mensaje(descuento) ;
-            respuesta.classList.remove('inicial');
-            form.classList.remove('inicial');
         }
-
-        function inicial(){
-            respuesta.classList.add('inicial');
-            form.classList.add('inicial');
-        }
-
-        function mostrarInfo(){
-            info.classList.remove('inicial');
-        }
-
-
-        const descuento =  calcular_descuento();
+        const descuento = 0;
 
     </script>
 
     <style>
-    *{
-      padding:0;
-
-      -webkit-box-sizing:border-box;
-      -moz-box-sizing:border-box;
-      box-sizing:border-box;
-
-      color:#eee;
-
-      font-family: sans-serif;
-    }
-
-    body{
-      position:relative;
-      background:#03a9f4;
-    }
-    
-    button{
-      border: 3px solid #eee;
-      cursor:pointer;
-      font-size:1.3em;
-    }
-
-    .form, .respuesta, .info, .encabezado{
-        position:relative;
-
-        -webkit-transform:translate(-50%, 0%);
-        transform:translate(-50%, 0%);
-        -webkit-transition: all .4s linear;
-        transition:  all .4s linear;
-
-        height:auto;
-        width:100%;
-        left:50%;
-    }
-
-
-    .form *, .respuesta p, .info p, .info ul, .encabezado *{
-      position:relative;
-
-      -webkit-transform:translate(-50%, 0%);
-      transform:translate(-50%, 0%);
-
-      top:50%;
-      left:50%;
-      width:70%;
-      
-      background:transparent;
-      outline:none;
-
-    }
-
-    .form .input{
-      border:none;
-      border-bottom:3px solid #eee;
-      font-size:1.8em;
-    }
-
-    .form .submit{
-      margin-top: 0.5em;
-    }
-
-
-    .form.inicial{
-        margin-top: 10%;
-    }
-
-    .respuesta.inicial, .info.inicial{
-        display: none;
-    }
-
-    .respuesta, .info{      
-        margin-top:1em;
-        margin-bottom: 1em;
-    }
-
-
-
 
     </style>
 
