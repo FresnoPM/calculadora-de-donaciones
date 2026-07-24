@@ -1,20 +1,25 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.5">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>¿Cuánto pagás de ganancias?</title>
 </head>
 <body>
-    <input type="number" id="ganancias" placeholder="500.000">
+    <div class="form inicial" id="form">
+        <input type="number" id="ganancias" placeholder="500.000,00"  class="input"  onfocus="inicial()">
+        <br>
+        <button type="submit" onclick="responder()" id="submit" class="submit">Calcular</button>
+    </div>
 
-    <button onclick="responder()">Calcular</button>
-
-    <div id="respuesta"></div>
+    <div id="respuesta" class="respuesta inicial"></div>
 
     <script>
-        
+        var form = document.getElementById('form');
+        var ganancias = document.getElementById("ganancias");
+        var respuesta = document.getElementById('respuesta');
+        var submit =  document.getElementById('submit');
+
         function calcular_descuento() {
-            let ganancias = document.getElementById("ganancias");
             return ganancias.value * 0.05;
         }
 
@@ -36,13 +41,93 @@
 
         function responder(){
             respuesta.textContent = mensaje(descuento) ;
+            respuesta.classList.remove('inicial');
+            form.classList.remove('inicial');
         }
 
-        const descuento =  calcular_descuento();
-        var respuesta = document.getElementById('respuesta');
+        function inicial(){
+            respuesta.classList.add('inicial');
+            form.classList.add('inicial');
+        }
 
+
+        const descuento =  calcular_descuento();
 
     </script>
+
+    <style>
+    *{
+      margin:0;
+      padding:0;
+      -webkit-box-sizing:border-box;
+      -moz-box-sizing:border-box;
+      box-sizing:border-box;
+
+      color:#eee;
+    }
+
+    body{
+      position:relative;
+      background:#03a9f4;
+    }
+
+/*-------------- saerch section -----------*/
+    .form, .respuesta{
+      position:fixed;
+      -webkit-transform:translate(-50%, -50%);
+      transform:translate(-50%, -50%);
+       -webkit-transition: all .4s linear;
+      transition:  all .4s linear;
+      
+      height:30%;
+      width:100%;
+      top:10%;
+      left:50%;
+    }
+
+    .form.inicial{
+      height:100%;
+      top:50%;
+    }
+
+    .form *{
+      position:absolute;
+      top:50%;
+      left:50%;
+      -webkit-transform:translate(-50%, -50%);
+      transform:translate(-50%, -50%);
+      width:390px;
+      height:40px;
+      background:transparent;
+      outline:none;
+
+    }
+
+    .form .input{
+      border:none;
+      border-bottom:3px solid #eee;
+      font-size:1.8em;
+    }
+
+    .form .submit{
+      border: 3px solid #eee;
+      cursor:pointer;
+      font-size:1.3em;
+      margin-top: 60px;
+    }
+
+/*-------------- respuesta -----------*/
+
+    .respuesta.inicial{
+        display: none;
+    }
+
+    .respuesta{      
+      width:390px;
+      top:50%;
+    }
+
+    </style>
 
 </body>
 </html>
