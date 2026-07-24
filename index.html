@@ -12,7 +12,7 @@
     <div class="form inicial" id="form">
         <label for="ganancias">¿Cuánto pagás de ganancias?</label>
         <span>$
-            <input id="ganancias" placeholder="500000.00"  class="ganancias">
+            <input id="ganancias" placeholder="500000.00"  class="ganancias" onkeyup="validar()" type="text" >
         </span>
         <button type="submit" onclick="responder()" id="submit" class="submit">Calcular</button>
     </div>
@@ -21,24 +21,17 @@
         <p></p> 
     </div>
     <div id="info" class="info inicial">
+        <h3>Info útil</h3>
         <p>
             Buscá la orga a la que querés donar acá:
             <a href="https://servicioscf.afip.gob.ar/Publico/Rg2681/consulta.aspx">Consulta de organizaciones sin fines de lucro - Afip.gob.ar</a>
+
             <br>
+            Si no tenés tu recibo de sueldo a mano podés fijarte acá <a href="https://calcularsueldo.com.ar/ganancias/calculadora-de-ganancias">Calculadora de ganancias - Calcularsueldo.com</a> cuánto te toca pagar de ganancias.
             <br>
 
-            Informate de los detalles en las fuentes oficiales:
-            <ul>
-                <li>
-                    <a href="https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=278">Guía para donantes - Afip.gob.ar</a>
-                </li>
-                <li>
-                    <a href="https://www.argentina.gob.ar/agricultura/si-queres-ser-donante">Si querés ser donante - Argentina.gob.ar</a>
-                </li>
-                <li>
-                    <a href="https://calcularsueldo.com.ar/ganancias/calculadora-de-ganancias">Calculadora de ganancias - Calcularsueldo.com</a>
-                </li>
-            </ul>
+            Informate de los detalles legales y pasos a seguir desde las fuentes oficiales en <a href="https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=278">Guía para donantes - Afip.gob.ar</a> o en <a href="https://www.argentina.gob.ar/agricultura/si-queres-ser-donante">Si querés ser donante - Argentina.gob.ar</a>
+            <br>
 
             OJO: No todas las organizaciones pueden recibir donaciones de más de $100.000. Consultá primero sobre esos límites.
 
@@ -51,6 +44,16 @@
         var respuesta_texto = respuesta.getElementsByTagName("p")[0]; 
         var submit =  document.getElementById('submit');
         var info =  document.getElementById('info');
+
+
+        function validar(){
+            if (isNaN(ganancias.value) || ganancias.value == "") {
+                submit.disabled = true; 
+            } else {
+                submit.disabled = false; 
+            }
+        }
+
 
         function formatear(nro){           
             if (isNaN(nro)) { console.log("chequear número a formatear"); return; }else{ nro = Number(nro); }
