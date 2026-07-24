@@ -18,6 +18,7 @@
     </div>
 
     <div id="respuesta" class="respuesta inicial"> 
+        <div id="descuento" class="descuento"></div>
         <p></p> 
     </div>
     <div id="info" class="info inicial">
@@ -34,6 +35,7 @@
         var respuesta_texto = respuesta.getElementsByTagName("p")[0]; 
         var submit =  document.getElementById('submit');
         var info =  document.getElementById('info');
+        var descuento_numero =  document.getElementById('descuento'); 
 
 
         function validar(){
@@ -58,14 +60,14 @@
 
         function mensaje(){
             let descuento = ganancias.value * 0.05;
-
-            let mensaje = "El monto máximo que podés deducir de tus impuestos a las ganancias es de: " + formatear(descuento) + ". Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
+            descuento_numero.textContent =  formatear(descuento);
+            respuesta_texto.textContent = "Es el monto máximo que podés deducir de tus impuestos a las ganancias. \n Podés donar todo lo que quieras pero no se te descontará más que esta cantidad.";
 
             return mensaje;
         }   
 
         function responder(){
-            respuesta_texto.textContent = mensaje(descuento) ;
+           mensaje(descuento) ;
         }
         const descuento = 0;
 
