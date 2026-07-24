@@ -5,28 +5,39 @@
     <title>¿Cuánto pagás de ganancias?</title>
 </head>
 <body>
+    <div id="encabezado" class="encabezado">
+        <h1>¿Cuánto puedo donar?</h1>        
+    </div>
+
     <div class="form inicial" id="form">
+        <h2>Ingresá cuánto pagás de ganancias:</h2>
         <input type="number" id="ganancias" placeholder="500.000,00"  class="input"  onfocus="inicial()">
         <button type="submit" onclick="responder()" id="submit" class="submit">Calcular</button>
+        <button id="masinfo" onclick="mostrarInfo()">Más info</button>
     </div>
 
     <div id="respuesta" class="respuesta inicial"> 
         <p></p> 
-        <button id="masinfo" onclick="mostrarInfo()">Más info</button>
     </div>
     <div id="info" class="info inicial">
         <p>
             Buscá la orga a la que querés donar acá:
-            https://servicioscf.afip.gob.ar/Publico/Rg2681/consulta.aspx
+            <a href="https://servicioscf.afip.gob.ar/Publico/Rg2681/consulta.aspx">Consulta de organizaciones sin fines de lucro - Afip.gob.ar</a>
+            <br>
             <br>
 
-            Informate de los detalles en lasa fuentes oficiales:
+            Informate de los detalles en las fuentes oficiales:
             <ul>
-                <li>https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=278</li>
-                <li>https://www.argentina.gob.ar/agricultura/si-queres-ser-donante</li>
-                <li>https://calcularsueldo.com.ar/ganancias/calculadora-de-ganancias</li>
+                <li>
+                    <a href="https://serviciosweb.afip.gob.ar/genericos/guiaspasopaso/VerGuia.aspx?id=278">Guía para donantes - Afip.gob.ar</a>
+                </li>
+                <li>
+                    <a href="https://www.argentina.gob.ar/agricultura/si-queres-ser-donante">Si querés ser donante - Argentina.gob.ar</a>
+                </li>
+                <li>
+                    <a href="https://calcularsueldo.com.ar/ganancias/calculadora-de-ganancias">Calculadora de ganancias - Calcularsueldo.com</a>
+                </li>
             </ul>
-
 
         </p>
     </div>
@@ -87,6 +98,8 @@
       box-sizing:border-box;
 
       color:#eee;
+
+      font-family: sans-serif;
     }
 
     body{
@@ -98,29 +111,23 @@
       border: 3px solid #eee;
       cursor:pointer;
       font-size:1.3em;
-  }
-
-/*-------------- saerch section -----------*/
-    .form, .respuesta, .info{
-      position:relative;
-
-      -webkit-transform:translate(-50%, -50%);
-      transform:translate(-50%, -50%);
-       -webkit-transition: all .4s linear;
-      transition:  all .4s linear;
-      
-      height:30%;
-      width:100%;
-      top:10%;
-      left:50%;
     }
 
-    .form.inicial{
-      height:100%;
-      top:50%;
+    .form, .respuesta, .info, .encabezado{
+        position:relative;
+
+        -webkit-transform:translate(-50%, 0%);
+        transform:translate(-50%, 0%);
+        -webkit-transition: all .4s linear;
+        transition:  all .4s linear;
+
+        height:auto;
+        width:100%;
+        left:50%;
     }
 
-    .form *, .respuesta *, .info *{
+
+    .form *, .respuesta p, .info p, .info ul, .encabezado *{
       position:relative;
 
       -webkit-transform:translate(-50%, 0%);
@@ -145,24 +152,20 @@
       margin-top: 0.5em;
     }
 
-/*-------------- respuesta -----------*/
+
+    .form.inicial{
+        margin-top: 10%;
+    }
 
     .respuesta.inicial, .info.inicial{
         display: none;
     }
 
     .respuesta, .info{      
-        -webkit-transform:translate(-50%, 0%);
-        transform:translate(-50%, 0%);
-
-        height: auto;
         margin-top:1em;
         margin-bottom: 1em;
     }
 
-    .respuesta p{
-      width:70%;
-    }
 
 
 
